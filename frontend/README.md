@@ -1,3 +1,26 @@
+# Frontend Developing by React using APIs
+
+## List of APIs using as foloowing below:
+
+`Here is the list of User Section for the API`
+
+User Register   : /auth/register
+Login User      : /auth/login
+Logout User     : /auth/logout
+Get all users   : /auth/users
+Get logged user : /auth/user
+Get user by id  : /auth/user/{id}
+Change password : /auth/user/password
+
+`Here is the list of Movie Section for the API`
+
+Add Movie           : /movie/add
+Get all movies      : /movies
+Get movie by id     : /movie/{id}
+Update movie by id  : /movie/update/{id}
+Delete movie by id  : /movie/delete/{id}
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
