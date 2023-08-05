@@ -1,0 +1,345 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Movie Detail Api
+  description: An API to return movie details
+
+servers:
+  - url: http://127.0.0.1:5000/api/v1
+
+
+paths:
+
+  # =========================
+  # USER AUTHENTICATION START
+  # =========================
+
+  # User Registration
+  /auth/register:
+    post:
+      tags:
+        - User Authentication
+      description: New User Registration
+      consumes:
+        - application/json
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Register'
+      responses:
+        '201':
+          description: User Created Successfully
+
+  # User Login
+  /auth/login:
+    post:
+      tags:
+        - User Authentication
+      description: Login
+      consumes:
+        - application/json
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: Login Successfully
+
+  # User Logout or Revoke JWT Token
+  /auth/logout:
+    post:
+      tags:
+        - User Authentication
+      description: Logout
+      consumes:
+        - application/json
+      required: false
+      content:
+        application/json:
+          schema:
+            type: object
+      responses:
+        '200':
+          description: Logout Successfully
+      security:
+        - bearerAuth: []
+
+  # Get all users
+  /auth/users:
+    get:
+      tags:
+        - User Authentication
+      description: Get All Users
+      consumes:
+        - application/json
+      required: false
+      content:
+        application/json:
+          schema:
+            type: object
+      responses:
+        '200':
+          description: Fetch All Users Successfully
+      security:
+        - bearerAuth: []
+
+  # Get single logged user
+  /auth/user:
+    get:
+      tags:
+        - User Authentication
+      description: Get Logged User
+      consumes:
+        - application/json
+      required: false
+      content:
+        application/json:
+          schema:
+            type: object
+      responses:
+        '200':
+          description: Successfully Fetch Single Logged User
+      security:
+        - bearerAuth: []
+
+  # Get single user by ID
+  /auth/user/{id}:
+    get:
+      tags:
+        - User Authentication
+      description: Get User by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully Fetch Single User by ID
+      security:
+        - bearerAuth: []
+
+  # Update Password of the Logged User
+  /auth/user/password:
+    put:
+      tags:
+        - User Authentication
+      description: Update password
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Password'
+      responses:
+        '201':
+          description: User Updated Successfully
+      security:
+        - bearerAuth: []
+
+  # =========================
+  # USER AUTHENTICATION END
+  # =========================
+
+
+  # =========================
+  # MOVIE API START
+  # =========================
+
+  # Add new Movie
+  /movie/add:
+    post:
+      tags:
+        - Movie
+      description: Add new Movie in the List
+      consumes:
+        - application/json
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+      responses:
+        '201':
+          description: Add Movie Successfully
+      security:
+        - bearerAuth: []
+
+  # Get All Movies
+  /movies:
+    get:
+      tags:
+        - Movie
+      description: Get All Movies List
+      consumes:
+        - application/json
+      required: false
+      content:
+        application/json:
+          schema:
+            type: object
+      responses:
+        '200':
+          description: Fetch All Movie List
+
+  # Get single Movie by ID
+  /movie/{id}:
+    get:
+      tags:
+        - Movie
+      description: Get Movie by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully Fetch Single Movie by ID
+
+  # Update Movie by ID
+  /movie/update/{id}:
+    put:
+      tags:
+        - Movie
+      description: Update Movie
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Movie'
+      responses:
+        '200':
+          description: Movie Updated Successfully
+      security:
+        - bearerAuth: []
+
+  # Delete Movie by ID
+  /movie/delete/{id}:
+    delete:
+      tags:
+        - Movie
+      description: Delete Movie
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Movie Deleted Successfully
+      security:
+        - bearerAuth: []
+
+  # =========================
+  # MOVIE API END
+  # =========================
+
+
+
+
+# ===========================================
+# START : SCHEMAS FOR [ POST | PUT ] 
+# ===========================================
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    # User Registration
+    Register:
+      required:
+        - email
+        - username
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          example: "abc@gmail.com"
+        username:
+          type: string
+          example: "joe2022222"
+        password:
+          type: string
+          example: "xxxxxxxxxx"
+
+    # User Login
+    Login:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          example: "abc@gmail.com"
+        password:
+          type: string
+          example: "abcdef1234"
+
+    # Update Password
+    Password:
+      required:
+        - password
+      type: object
+      properties:
+        password:
+          type: string
+          example: "abcdef1234"
+
+    # Add Movie
+    Movie:
+      required:
+        - name
+        - short_desc
+        - description
+        - release_date
+        - rating
+      type: object
+      properties:
+        name:
+          type: string
+          example: "A Beautiful Mind"
+        short_desc:
+          type: text
+          example: "This is the movie base on..."
+        description:
+          type: text
+          example: "This is the movie base on real story"
+        release_date:
+          type: string
+          example: "2022"
+        rating:
+          type: integer
+          example: "5"
+
+# ===========================================
+# START : SCHEMAS FOR [ POST | PUT ]
+# ===========================================
