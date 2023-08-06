@@ -29,36 +29,56 @@ User section has the the API of Authentication, Get Users detail, Current User D
 Here is the list of User Section for the API.
 
 User Register   : /auth/register
+
 Login User      : /auth/login
+
 Logout User     : /auth/logout
+
 Get all users   : /auth/users
+
 Get logged user : /auth/user
+
 Get user by id  : /auth/user/{id}
+
 Change password : /auth/user/password
+
 
 The another section is the Movie where the logged user only can Add, Edit and Delete but Get the movie detail without get the 
 user authentication.
 Here is the list of Movie Section for the API.
 
 Add Movie           : /movie/add
+
 Get all movies      : /movies
+
 Get movie by id     : /movie/{id}
+
 Update movie by id  : /movie/update/{id}
+
 Delete movie by id  : /movie/delete/{id}
+
 
 ## RUN THE APPLICATION
 To run the application there is the two ways.
 
 1. By running direct python command as following below:
+
     python app.py
 
 2. By docker command as following steps below:
+
     `First build the Dockerfile and name it as movie-detail and version is latest with corrent directory using dot`
+
     a. docker build -t movie-detail:latest .
 
     `Then run the build image name if movie_container, publish the port on 5000 from the docker image movie-detail, which will be the docker container`
+
     b. docker run --publish 5000:5000 --name movie_container movie-detail
 
     `or`
 
       docker run -p 5000:5000 --name movie_container movie-detail
+
+    `or`
+
+      docker compose up
