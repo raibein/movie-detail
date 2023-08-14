@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS, cross_origin
 import os
 
 from src.database.bookmark import Bookmark
@@ -19,6 +20,7 @@ config['JWT_SECRET_KEY']
 test_config = None
 
 app = Flask(__name__, instance_relative_config=True)
+CORS(app)
 
 if test_config is None:
     app.config.from_mapping(

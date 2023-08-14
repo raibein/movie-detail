@@ -1,0 +1,25 @@
+{
+    "data": [
+      {
+        "description": "This is the fantasy movie of Mutant Turtle",
+        "id": 2,
+        "name": "Teenage Mutant Ninja Turtles: Mutant Mayhem",
+        "rating": 4,
+        "release_date": 2023,
+        "short_desc": "This is the fantasy...",
+        "slug": "Teenage-Mutant-Ninja-Turtles:-Mutant-Mayhem-4922817067",
+        "user_id": 4
+      },
+      {
+        "description": "This is the movie base on real story",
+        "id": 3,
+        "name": "The Beautiful Mind",
+        "rating": 5,
+        "release_date": 2022,
+        "short_desc": "This is the movie base on...",
+        "slug": "A-Beautiful-Mind-9935172689",
+        "user_id": 4
+      }
+    ],
+    "status": "success"
+  }

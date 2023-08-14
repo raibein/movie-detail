@@ -3,13 +3,17 @@ import { Component  } from "react"
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
+// Import small html content which send the data from api and APIs data send from this page
+import MovideDetailComponent from '../Components/MovieDetailComponent';
+
+
 class DefaultContainer extends Component{
+    
     render() {
         return (
             <div>
-                <div>
-                    <Header />
-                </div>
+                
+                <Header />
 
                 <section class="how_section layout_padding">
                     <div class="heading_container">
@@ -169,70 +173,11 @@ class DefaultContainer extends Component{
                 </section>
 
 
+                <MovideDetailComponent />
 
-                <section class="client_section layout_padding-bottom">
-                    <div class="container">
-                    <div class="heading_container">
-                        <h2>
-                        Movie Detail
-                        </h2>
-                    </div>
-                    <div class="box">
-                        <div class="b-1">
-                        <div class="client_id">
-                            <div class="img-box">
-                            <img src={require ('../images/client-1.jpg')} alt="" />
-                            </div>
-                            <div class="name">
-                            <h5>
-                                Readable
-                            </h5>
-                            <h6>
-                                Content of a page
-                            </h6>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="client_detail">
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content of a page when
-                            looking at its layout. The point of using Lorem
-                        </p>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="client_id">
-                        <div class="img-box">
-                            <img src={require ('../images/client-2.jpg')} alt="" />
-                        </div>
-                        <div class="name">
-                            <h5>
-                            Readable
-                            </h5>
-                            <h6>
-                            Content of a page
-                            </h6>
-                        </div>
-                        </div>
-                        <div class="client_detail">
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content of a page when
-                            looking at its layout. The point of using Lorem
-                        </p>
-                        </div>
-                    </div>
-                    <div class="btn-box">
-                        <a href="">
-                        Load More
-                        </a>
-                    </div>
-                    </div>
-                </section>
+                <Footer />
 
-                
-                <div>
-                    <Footer />
-                </div>
+
             </div>
         )
     }
