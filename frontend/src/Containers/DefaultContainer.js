@@ -15,7 +15,7 @@ class DefaultContainer extends Component{
                 
                 <Header />
 
-                <section class="how_section layout_padding">
+                <section class="how_section layout_padding" id="how">
                     <div class="heading_container">
                     <h2>
                         Movie Details Works as follow ...
@@ -147,7 +147,7 @@ class DefaultContainer extends Component{
                 </section>
 
 
-                <section class="about_section layout_padding-bottom">
+                <section class="about_section layout_padding-bottom" id="about">
                     <div class="container">
                     <div class="heading_container">
                         <h2>

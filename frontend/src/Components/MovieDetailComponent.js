@@ -14,10 +14,10 @@ function MovideDetailComponent() {
     }, []);
 
     return (
-        <section class="client_section layout_padding-bottom">
+        <section class="client_section layout_padding-bottom" id="movie">
             <div class="container">
                 <div class="heading_container">
-                    <h2>Movie Detail</h2>
+                    <h2>List of Movies</h2>
                 </div>
 
 

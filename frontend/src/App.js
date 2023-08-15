@@ -7,6 +7,7 @@ import './App.css';
 
 // import all pages and rounting here
 import DefaultContainer from './Containers/DefaultContainer';
+import MovieByIdContainer from './Containers/MovieByIdContainer';
 
 
 
@@ -15,6 +16,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<DefaultContainer/>}/>
+        <Route exact path="/movie/:id" element={<MovieByIdContainer/>}/>
       </Routes>
     </Router>
   );

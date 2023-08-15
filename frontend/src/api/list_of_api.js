@@ -24,9 +24,8 @@ export function getMovieContent(data, setData) {
     });
 }
 
-export function getSingleMovieContent(data, setData) {
-    
-    fetch(base_url + '/movie/')
+export function getSingleMovieContent(data, setData, id) {
+    fetch(base_url + '/movie/' + id)
         .then((response) => response.json())
         .then((actualData) => {
             console.log(actualData);
