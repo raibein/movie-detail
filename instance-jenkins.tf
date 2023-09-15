@@ -28,8 +28,8 @@ resource "aws_instance" "ec2_jenkins_instance" {
   # generic remote provisioners (i.e. file/remote-exec)
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/jenkins.sh",
-      "sudo /tmp/jenkins.sh"
+      "chmod +x /tmp/jenkins_docker.sh",
+      "sudo /tmp/jenkins_docker.sh"
     ]
   }
 }
