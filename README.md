@@ -1,18 +1,13 @@
 # Movie Detail
 
-## Frontend
-The Frontend by using the React JS.
+## Prerequisite
+Before use the `Terraform` install the `awscli` and `terraform` and set up the config of AWS.
 
-## Backend
-Backend used by Flask which created the APIs to access.
+## Infrastructure as Code (IAC) from Terraform
+Go to the `iac` git branch to use the Terraform and execute as the listed command below.
 
-## Run the both Frontend and Backend
-Run both frontend application and backend application together at once use the docker compose command as following below.
-
-1. docker compose up -d
-    
-    Please note, d flag is used to for backend running
-
-2. docker compose down
-
-    Please note, docker compose down to stop the application or stop the running docker container.
+`Command list : `
+### terraform init
+### terraform plan
+### terraform fmt
+### terraform apply

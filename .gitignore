@@ -1,1 +1,3 @@
 cred
+.terraform
+.terraform.lock.hcl
