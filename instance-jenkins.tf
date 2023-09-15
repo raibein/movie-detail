@@ -22,7 +22,7 @@ resource "aws_instance" "ec2_jenkins_instance" {
   # Copies the jenkins.sh file to /tmp/jenkins.sh
   provisioner "file" {
     source      = "./scripts/jenkins.sh"
-    destination = "/tmp/jenkins.sh"
+    destination = "/tmp/jenkins_docker.sh"
   }
 
   # generic remote provisioners (i.e. file/remote-exec)
