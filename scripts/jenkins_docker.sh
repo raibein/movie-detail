@@ -15,14 +15,14 @@ sudo systemctl enable jenkins
 sudo systemctl start jenkins
 
 # Install Docker
-sudo yum install docker
+sudo yum install docker -y
 
 # Start Docker
 # sudo systemctl start docker
 
 # Add your user to the docker group.
-sudo usermod -aG docker $USER
-newgrp docker
+# sudo usermod -aG docker $USER
+# newgrp docker
 
 # Docker start in Boot
 sudo systemctl enable docker.service
