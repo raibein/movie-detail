@@ -10,12 +10,9 @@ sudo yum install java -y
 # sudo yum clean packages    # If only remove packages
 
 # Install Jenkins in CentOS
-sudo yum install jenkins -y
+sudo yum install jenkins docker git -y
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
-
-# Install Docker
-sudo yum install docker -y
 
 # Start Docker
 # sudo systemctl start docker
