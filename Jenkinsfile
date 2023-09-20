@@ -31,12 +31,12 @@ pipeline {
       steps {
         // build
         sh 'docker build -t rabenshrestha/movie-frontend:latest ./frontend/'
-      }
-      script {
-        sh 'echo Frontend Docker Image Push to Docker Register'
-        withDockerRegistry(credentialsId: 'dockerAuth', url: dockerHubUrl) {
-          // some block
-          sh 'docker image push ' . frontendRegistry
+        script {
+          sh 'echo Frontend Docker Image Push to Docker Register'
+          withDockerRegistry(credentialsId: 'dockerAuth', url: dockerHubUrl) {
+            // some block
+            sh 'docker image push ' . frontendRegistry
+          }
         }
       }
     }
