@@ -19,6 +19,7 @@ sudo systemctl start jenkins
 
 # Add your user to the docker group.
 sudo usermod -aG docker $USER
+# sudo usermod -a -G docker jenkins
 # newgrp docker
 
 # Docker start in Boot
