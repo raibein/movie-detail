@@ -1,22 +1,46 @@
 pipeline {
+  
   agent any
+  
+  environment {
+    dockerHubUrl = 'rabenshrestha'
+    backendRegistry = 'rabenshrestha/movie-backend:latest'
+    frontendRegistry = 'rabenshrestha/movie-frontend:latest'
+  }
+
   stages {
-    stage ('Fetch Git') {
+    stage ('Fetch from Git') {
       steps {
         git branch: 'automate', credentialsId: 'gitAuth', url: 'https://github.com/raibein/movie-detail.git'
       }
     }
-    stage ('Build') {
+    stage ('Backend Docker Build and Push') {
       steps {
         // build
-        echo 'bundle exec rake build'
+        sh 'docker build -t rabenshrestha/movie-backend:latest ./backend/'
+        
+        echo 'Backend Docker Image Push to Docker Register'
+        withDockerRegistry(credentialsId: 'dockerAuth', url: dockerHubUrl) {
+            // some block
+            sh 'docker image push ' . backendRegistry
+        }
       }
     }
-    stage ('Test') {
+    stage ('Frontend Docker Build and Push') {
       steps {
-        // run tests with coverage
-        echo 'bundle exec rake spec'
+        // build
+        sh 'docker build -t rabenshrestha/movie-frontend:latest ./frontend/'
       }
+      echo 'Frontend Docker Image Push to Docker Register'
+        withDockerRegistry(credentialsId: 'dockerAuth', url: dockerHubUrl) {
+            // some block
+            sh 'docker image push ' . frontendRegistry
+      }
+    }
+  }
+  post {
+    always {
+      sh 'docker logout'
     }
   }
 }
