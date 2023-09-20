@@ -1,3 +1,9 @@
+// Here the Frontend is not going to build Dockerfile and push to Docker Hub
+// The resource cannot handle this much space, that's mean the out of space.
+// The AWS is free teir, so this Jenkins host could not handle the much packages of the Frontend.
+// That is why I have commented the frontend docker file and also commented to push docker file.
+
+
 pipeline {
   
   agent any
@@ -21,12 +27,12 @@ pipeline {
         sh 'docker build -t rabenshrestha/movie-backend:latest ./backend/'
       }
     }
-    stage ('Frontend Docker Build') {
-      steps {
-        // build
-        sh 'docker build -t rabenshrestha/movie-frontend:latest ./frontend/'
-      }
-    }
+    // stage ('Frontend Docker Build') {
+    //   steps {
+    //     // build
+    //     sh 'docker build -t rabenshrestha/movie-frontend:latest ./frontend/'
+    //   }
+    // }
     stage ('Docker Login') {
       steps {
         // Login
@@ -39,12 +45,12 @@ pipeline {
         sh 'docker image push $backendRegistry'
       }
     }
-    stage ('Frontend Docker Push') {
-      steps {
-        // Frontend Docker Push
-        sh 'docker image push $frontendRegistry'
-      }
-    }
+    // stage ('Frontend Docker Push') {
+    //   steps {
+    //     // Frontend Docker Push
+    //     sh 'docker image push $frontendRegistry'
+    //   }
+    // }
   }
   post {
     always {
