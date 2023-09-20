@@ -21,12 +21,12 @@ pipeline {
         sh 'docker build -t rabenshrestha/movie-backend:latest ./backend/'
       }
     }
-    // stage ('Frontend Docker Build') {
-    //   steps {
-    //     // build
-    //     sh 'docker build -t rabenshrestha/movie-frontend:latest ./frontend/'
-    //   }
-    // }
+    stage ('Frontend Docker Build') {
+      steps {
+        // build
+        sh 'docker build -t rabenshrestha/movie-frontend:latest ./frontend/'
+      }
+    }
     stage ('Docker Login') {
       steps {
         // Login
@@ -39,12 +39,12 @@ pipeline {
         sh 'docker image push $backendRegistry'
       }
     }
-    // stage ('Frontend Docker Push') {
-    //   steps {
-    //     // Frontend Docker Push
-    //     sh 'docker image push $frontendRegistry'
-    //   }
-    // }
+    stage ('Frontend Docker Push') {
+      steps {
+        // Frontend Docker Push
+        sh 'docker image push $frontendRegistry'
+      }
+    }
   }
   post {
     always {
