@@ -20,9 +20,11 @@ pipeline {
         sh 'docker build -t rabenshrestha/movie-backend:latest ./backend/'
         
         sh 'echo Backend Docker Image Push to Docker Register'
-        withDockerRegistry(credentialsId: 'dockerAuth', url: dockerHubUrl) {
+        script {
+          withDockerRegistry(credentialsId: 'dockerAuth', url: dockerHubUrl) {
             // some block
             sh 'docker image push ' . backendRegistry
+          }
         }
       }
     }
@@ -32,9 +34,11 @@ pipeline {
         sh 'docker build -t rabenshrestha/movie-frontend:latest ./frontend/'
       }
       sh 'echo Frontend Docker Image Push to Docker Register'
+      script {
         withDockerRegistry(credentialsId: 'dockerAuth', url: dockerHubUrl) {
-            // some block
-            sh 'docker image push ' . frontendRegistry
+          // some block
+          sh 'docker image push ' . frontendRegistry
+        }
       }
     }
   }
