@@ -6,6 +6,7 @@ pipeline {
     dockerHubUrl = 'rabenshrestha'
     backendRegistry = 'rabenshrestha/movie-backend:latest'
     frontendRegistry = 'rabenshrestha/movie-frontend:latest'
+    DOCKERHUB_CREDENTIALS = credentials('dockerAuth')
   }
 
   stages {
@@ -14,30 +15,34 @@ pipeline {
         git branch: 'automate', credentialsId: 'gitAuth', url: 'https://github.com/raibein/movie-detail.git'
       }
     }
-    stage ('Backend Docker Build and Push') {
+    stage ('Backend Docker Build') {
       steps {
         // build
         sh 'docker build -t rabenshrestha/movie-backend:latest ./backend/'
-        script {
-          sh 'echo Backend Docker Image Push to Docker Register'
-          withDockerRegistry(credentialsId: 'dockerAuth', url: dockerHubUrl) {
-            // some block
-            sh 'docker image push ' . backendRegistry
-          }
-        }
       }
     }
-    stage ('Frontend Docker Build and Push') {
+    stage ('Frontend Docker Build') {
       steps {
         // build
         sh 'docker build -t rabenshrestha/movie-frontend:latest ./frontend/'
-        script {
-          sh 'echo Frontend Docker Image Push to Docker Register'
-          withDockerRegistry(credentialsId: 'dockerAuth', url: dockerHubUrl) {
-            // some block
-            sh 'docker image push ' . frontendRegistry
-          }
-        }
+      }
+    }
+    stage ('Docker Login') {
+      steps {
+        // Login
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      }
+    }
+    stage ('Backend Docker Push') {
+      steps {
+        // Backend Docker Push
+        sh 'docker image push $backendRegistry'
+      }
+    }
+    stage ('Frontend Docker Push') {
+      steps {
+        // Frontend Docker Push
+        sh 'docker image push $frontendRegistry'
       }
     }
   }
